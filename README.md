@@ -1,12 +1,15 @@
 # starter-python
 
+These steps explain how to set up a reproducible environment on any machine, that you can easily commit to a git repository, including the Python version and all the dependencies you add with pip, that can be used withing Visual Studio Code or a Jupyter Notebook.
 
 ## Prerequisites
 
-* Python 3
-* [Poetry](https://python-poetry.org/docs/#installation)
+* [Python 3](https://www.python.org/)
 * [PyEnv](https://github.com/pyenv/pyenv#installation)
+* [pip](https://pip.pypa.io/en/stable/installation/)
+* [Poetry](https://python-poetry.org/docs/#installation)
 
+## Installation
 
 ```bash
 # Linux
@@ -20,15 +23,73 @@ brew install poetry
 brew install pyenv
 
 # Windows
+# We recommend using WSL2 and Linux steps instead
+# https://www.python.org/downloads/windows/
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 # pyenv-win unnofficial fork
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
 ```
 
+
 ## Unsing PyEnv
 
-You can use PyEnv to install alternative Python versions without overtaking
-your main Python installation.
+You can use PyEnv to install alternative Python versions without overtaking dyour main Python installation.
+Using Poetry wouldn't help you with that.
+
+```console
+# List all available main Python3 versions
+pyenv install --list | grep " 3\."
+# Install a specific Python version, this can take a lot of time
+pyenv install -v 3.11.1
+# List installed versions on directory (you can delete from there directly)
+ls ~ /.pyenv/versions
+# Uninstall a version
+pyenv uninstall -v X.X.X
+# See installed, system, and active version
+pyenv versions
+# Activate a specific version
+pyenv global 3.11.1
+python --version
+# Run tests
+python -m test
+# Restore original Python version
+pyenv global system
+python --version
+```
+
+
+## Using Virtual Environments
+
+Virtual Environments is the basic way of isolating Python dependencies you install with `pip` for a specific folder in a project, so you don't have to globally install them for the whole machine, which could cause conflict between projects that require different versions of the same library.
+
+It lacks several features to completely create a **reproducible environment**, so we encoure you to use **Poetry** and the other tools referenced here. These are the basic steps to use it anyway.
+
+If you are using a specific Python version installed with `pyenv`, remember to activate that before creating or activating the virtual environment.
+
+```bash
+# Update pip
+pip install --upgrade pip
+# On Windows:
+# python -m pip install --upgrade pip
+# Install virtualenv in your machine
+pip install --upgrade virtualenv
+# Change to your desired project directory
+cd project
+# Create an environment directory "env"
+python3 -m venv env
+# Activate it with bash
+source env/bin/activate
+# Install your custom pip dependencies
+...
+# Exit the environment
+exit
+# Activate it with fish
+. ./env/bin/activate.fish
+# Do your things
+...
+# Exit
+exit
+```
 
 
 ## Using Poetry
@@ -181,23 +242,4 @@ poetry shell
 code .
 ```
 
-Open the `.pyjnb` file on VSCode. Then on the top right of the VSCode window,
-you will see a mention of the Python version running. Click on it, and on the
-dropdown select the virtual environment with the Python version created using
-Poetry. Any dependencies that you install with Poetry will be available from
-within VSCode.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Open the `.pyjnb` file on VSCode. Then on the top right of the VSCode window, you will see a mention of the Python version running. Click on it, and on the dropdown select the virtual environment with the Python version created using Poetry. Any dependencies that you install with Poetry will be available from within VSCode.
