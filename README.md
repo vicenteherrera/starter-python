@@ -74,13 +74,15 @@ python3 -V
 You should choose to commit the `.python-version` file to your project insted of ignoring it, contrary to what the default `.gitignore` file created by GitHub does.
 
 
-## Using Virtual Environments
+## Using Virtual Environments and pip
 
 Virtual Environments is the basic way of isolating Python dependencies you install with `pip` for a specific folder in a project, so you don't have to globally install them for the whole machine, which could cause conflict between projects that require different versions of the same library.
 
-It lacks several features to completely create a **reproducible environment**, so we encoure you to use **Poetry** and the other tools referenced here. These are the basic steps to use it anyway.
+It lacks an importnat features to completely create a **reproducible environment**, because even if you use `pip freeze` to generate a list of your installed packages including their specific version, versions for transitive dependencies are not recorded (those packages that are pedendencies from the ones you installed). So when you later reinstall the packages you may end up with difference source for those transitive dependencies.
 
-If you are using a specific Python version installed with `pyenv`, remember to activate that before creating or activating the virtual environment.
+That's why we encoure you to use **Poetry** to manage both _virtual environments_ and track _dependencies_.
+
+Anyways here are the basics on how to use _virtual environments_. Make sure you activate the right Python version with `pyenv` before you create the virtual environment, so it's included in it:
 
 ```bash
 # Update pip
@@ -110,6 +112,9 @@ exit
 
 ## Using Poetry
 
+### Prerequisites
+
+Make sure you specify and activate a specific Python version using `pyenv` as explaining at the beginning of this document.
 
 ### Create a new project
 
