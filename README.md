@@ -49,12 +49,12 @@ pyenv uninstall -v X.X.X
 pyenv versions
 # Activate a specific version
 pyenv global 3.11.1
-python --version
+python3 --version
 # Run tests
-python -m test
+python3 -m test
 # Restore original Python version
 pyenv global system
-python --version
+python3 --version
 ```
 
 
