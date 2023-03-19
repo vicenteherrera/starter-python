@@ -15,7 +15,7 @@ These steps explain how to set up a reproducible environment on any machine, tha
 # Linux
 curl -sSL https://install.python-poetry.org | python3 -
 curl https://pyenv.run | bash
-# PyEnv on Fish shell needs special steps, see https://github.com/pyenv/pyenv/issues/32#issuecomment-21018739
+# PyEnv on Fish shell needs special steps, see https://github.com/pyenv/pyenv/issues/32#issuecomment-21019171
 
 
 # Macos
