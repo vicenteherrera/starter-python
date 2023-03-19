@@ -57,6 +57,22 @@ pyenv global system
 python3 --version
 ```
 
+To use it on a project, we set a `.python-version` file on the root directory that automatically triggers pyenv to switch to that version when navigation to that directory.
+
+```
+# Specify that this directory should execute Python 3.11.1
+pyenv local 3.11.1
+# When navigating to the directory and back, the version automatically changes
+cd ..
+python3 -V
+# shows main Python version
+cd -
+python3 -V
+# shows 3.11.1
+```
+
+You should choose to commit the `.python-version` file to your project insted of ignoring it, contrary to what the default `.gitignore` file created by GitHub does.
+
 
 ## Using Virtual Environments
 
