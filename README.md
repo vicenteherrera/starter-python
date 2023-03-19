@@ -228,7 +228,7 @@ poetry add mamba
 
 ```bash
 # Add all dependencies the first time
-poetry add jupiterlab
+poetry add jupyterlab
 
 # Or download them if you cloned this repo
 poetry install
