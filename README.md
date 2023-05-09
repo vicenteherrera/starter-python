@@ -95,17 +95,17 @@ pip install --upgrade virtualenv
 cd project
 # Create an environment directory "env"
 python3 -m venv env
+
 # Activate it with bash
 source env/bin/activate
+# Activate it with fish
+. ./env/bin/activate.fish
+# Activate it on Windows:
+# env\Scripts\activate
+
 # Install your custom pip dependencies
 ...
 # Exit the environment
-exit
-# Activate it with fish
-. ./env/bin/activate.fish
-# Do your things
-...
-# Exit
 exit
 ```
 
