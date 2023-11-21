@@ -181,6 +181,30 @@ Afterwards you can launch from it Visual Studio Code and use it to debug the sam
 poetry run python3 
 ```
 
+## Develop with Visual Studio Code
+
+Add some dependencies for development, [flake8](https://flake8.pycqa.org/en/latest/) for linting, [mypy](https://mypy-lang.org/) for static typing, [black](https://black.readthedocs.io/en/stable/) for formatting.
+
+```bash
+poetry add -D flake8 mypy black
+```
+
+Run VSCode in Poetry's virtual environment with access to all installed dependencies
+
+```bash
+poetry run code .
+## or
+poetry shell
+code .
+```
+
+Click on the bottom right corner of VSCode where it says "Python", and select the virtual environment that has your project name in it, including "Poetry" to its right.
+
+More information here:
+* https://www.pythoncheatsheet.org/blog/python-projects-with-poetry-and-vscode-part-1
+* https://www.pythoncheatsheet.org/blog/python-projects-with-poetry-and-vscode-part-2
+* https://py-vscode.readthedocs.io/en/latest/files/linting.html
+
 ## Organize your project for setuptools
 
 Read this: https://click.palletsprojects.com/en/7.x/setuptools/#setuptools-integration
