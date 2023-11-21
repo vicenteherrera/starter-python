@@ -17,7 +17,6 @@ curl -sSL https://install.python-poetry.org | python3 -
 curl https://pyenv.run | bash
 # PyEnv on Fish shell needs special steps, see https://github.com/pyenv/pyenv/issues/32#issuecomment-21019171
 
-
 # Macos
 brew install poetry
 brew install pyenv
@@ -132,6 +131,11 @@ See more information [here](https://dev.to/bowmanjd/getting-started-with-python-
 
 Edit `mydirectory/pyproject.toml` and among other things, change `python = "^3.9"` to specify the version of Python you want to use (at the moment of writting this, many Debian installations tops at Python 3.9 and not 3.10+).
 
+To configure Poetry to run using the PyEnv configured Python version for this project, execute:
+```bash
+poetry config virtualenvs.prefer-active-python true --local
+```
+
 #### Error executing pytest
 
 If executing `poetry run pytest` you get an error, Poetry defiend the wrong version of `pytest`. Open `pyproject.toml` and substitute `pytest = "^5.2"` with, e.g., `pytest = "^6.0"`, and execute:
@@ -146,7 +150,7 @@ More info [here](https://zhauniarovich.com/post/2020/2020-09-poetry-pytest/)
 
 #### Install existing dependencies
 
-If you want to download and install already defined dependencies, for example if you just cloned this repository, use:
+If you want to download and install already defined dependencies, for example, if you just cloned this repository, use:
 ```bash
 poetry install
 ```
