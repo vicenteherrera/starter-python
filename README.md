@@ -7,32 +7,47 @@ These steps explain how to set up a reproducible environment on any machine, tha
 * [Python 3](https://www.python.org/)
 * [PyEnv](https://github.com/pyenv/pyenv#installation)
 * [pip](https://pip.pypa.io/en/stable/installation/)
+* [pipx](https://github.com/pypa/pipx)
 * [Poetry](https://python-poetry.org/docs/#installation)
 
 ## Installation
 
 ```bash
+# See pipx installation instructions at: https://github.com/pypa/pipx?tab=readme-ov-file#install-pipx
+
 # Linux
-curl -sSL https://install.python-poetry.org | python3 -
+## Pyenv
 curl https://pyenv.run | bash
-# PyEnv on Fish shell needs special steps, see https://github.com/pyenv/pyenv/issues/32#issuecomment-21019171
+### PyEnv on Fish shell:
+set -Ux PYENV_ROOT $HOME/.pyenv
+fish_add_path $PYENV_ROOT/bin
+## Poetry
+curl -sSL https://install.python-poetry.org | python3 -
 
 # Macos
-brew install poetry
 brew install pyenv
+brew install poetry
+
 
 # Windows
-# We recommend using WSL2 and Linux steps instead
+# We recommend using WSL2 and Linux steps instead, but following are some win specifics
 # https://www.python.org/downloads/windows/
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 # pyenv-win unnofficial fork
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
 ```
+## Using pipx
 
+You can use pipx to install Python dependencies the same way you would use pip, but each installation will create its own virtual environment. So when you are required to install a system wide tool like Poetry, you know the version of its dependencies will not clash with another tool that requires different versions for some of the same dependencies.
+
+```
+# Example alternative installation of Poerty
+pipx install poetry
+```
 
 ## Unsing PyEnv
 
-You can use PyEnv to install alternative Python versions without overtaking dyour main Python installation.
+You can use PyEnv to install alternative Python versions without overtaking your main Python installation.
 Using Poetry wouldn't help you with that.
 
 ```console
