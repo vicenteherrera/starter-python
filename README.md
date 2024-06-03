@@ -4,15 +4,27 @@ These steps explain how to set up a reproducible environment on any machine, tha
 
 ## Prerequisites
 
+* (Linux) Optional utilities packages
 * [Python 3](https://www.python.org/)
-* [PyEnv](https://github.com/pyenv/pyenv#installation)
 * [pip](https://pip.pypa.io/en/stable/installation/)
 * [pipx](https://github.com/pypa/pipx)
+* [PyEnv](https://github.com/pyenv/pyenv#installation)
 * [Poetry](https://python-poetry.org/docs/#installation)
 
 ## Installation
 
-```bash
+If using **Linux** you may need to install some general utilities packages:
+```console
+# You have to reinstall a Python version with PyEnv if you add any of these to be picked up
+sudo apt install libffi-dev # To avoid ctypes error in PyTorch
+sudo apt install liblzma-dev # To use lz compression in Python
+sudo apt install libbz2-dev # To use bz2 compression in Python
+sudo apt install python3-tk # To use TK GUI with Python
+sudo apt install patchelf # For nuitka Python compiler to generate Linux binaries
+```
+
+To install main prerequisites:
+```console
 # See pipx installation instructions at: https://github.com/pypa/pipx?tab=readme-ov-file#install-pipx
 
 # Linux
@@ -30,12 +42,13 @@ brew install poetry
 
 
 # Windows
-# We recommend using WSL2 and Linux steps instead, but following are some win specifics
+# We recommend using WSL2 and Linux steps instead, but following are some Windows specifics
 # https://www.python.org/downloads/windows/
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 # pyenv-win unnofficial fork
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
 ```
+
 ## Using pipx
 
 You can use pipx to install Python dependencies the same way you would use pip, but each installation will create its own virtual environment. So when you are required to install a system wide tool like Poetry, you know the version of its dependencies will not clash with another tool that requires different versions for some of the same dependencies.
