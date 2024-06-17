@@ -1,5 +1,32 @@
 
+all: install_python update
 
+install_python:
+	pyenv install $$(cat .python-version) -s
+
+update:
+	poetry update
+
+code:
+	poetry run code
+
+delete:
+	poetry env
+
+# Libraries utilities ----------------------------------------
+
+show:
+	poetry show
+
+info:
+	poetry run poetry env info -p
+
+delete:
+	poetry env remove python
+
+size:
+	@echo "Size of libraries"
+	@du -sh $$(poetry run poetry env info --path 2>/dev/null)
 
 # Test -------------------------------------------------------------------------------
 
